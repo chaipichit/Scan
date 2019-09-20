@@ -1,0 +1,15 @@
+C:\Users\SandWich\source\repos\DesktopApp1\DesktopApp1\bin\Debug\DesktopApp1.exe.config
+C:\Users\SandWich\source\repos\DesktopApp1\DesktopApp1\bin\Debug\DesktopApp1.exe
+C:\Users\SandWich\source\repos\DesktopApp1\DesktopApp1\bin\Debug\DesktopApp1.pdb
+C:\Users\SandWich\source\repos\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.csprojAssemblyReference.cache
+C:\Users\SandWich\source\repos\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.Properties.Resources.resources
+C:\Users\SandWich\source\repos\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.csproj.GenerateResource.cache
+C:\Users\SandWich\source\repos\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.csproj.CoreCompileInputs.cache
+C:\Users\SandWich\source\repos\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.exe
+C:\Users\SandWich\source\repos\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.pdb
+C:\Users\SandWich\source\repos\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.Form1.resources
+C:\Users\SandWich\source\repos\DesktopApp1\DesktopApp1\bin\Debug\Newtonsoft.Json.dll
+C:\Users\SandWich\source\repos\DesktopApp1\DesktopApp1\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\SandWich\source\repos\DesktopApp1\DesktopApp1\bin\Debug\Newtonsoft.Json.xml
+C:\Users\SandWich\source\repos\DesktopApp1\DesktopApp1\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\SandWich\source\repos\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.csproj.CopyComplete
