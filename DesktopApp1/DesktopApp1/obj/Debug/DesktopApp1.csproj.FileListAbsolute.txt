@@ -13,3 +13,5 @@ C:\Users\SandWich\source\repos\DesktopApp1\DesktopApp1\bin\Debug\System.Net.Http
 C:\Users\SandWich\source\repos\DesktopApp1\DesktopApp1\bin\Debug\Newtonsoft.Json.xml
 C:\Users\SandWich\source\repos\DesktopApp1\DesktopApp1\bin\Debug\System.Net.Http.Formatting.xml
 C:\Users\SandWich\source\repos\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.csproj.CopyComplete
+C:\Users\SandWich\source\repos\DesktopApp1\DesktopApp1\bin\Debug\RestSharp.dll
+C:\Users\SandWich\source\repos\DesktopApp1\DesktopApp1\bin\Debug\RestSharp.xml
