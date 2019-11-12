@@ -10,8 +10,8 @@ namespace DesktopApp1
     {
         public string id { get; set; }
         public string barcode { get; set; }
-        public object count { get; set; }
+        public string count { get; set; }
         public string name { get; set; }
-        public object price { get; set; }
+        public string price { get; set; }
     }
 }
