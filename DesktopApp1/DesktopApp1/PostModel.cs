@@ -8,8 +8,8 @@ namespace DesktopApp1
 {
     public class PostModel
     {
-        public List<string> id { get; set; }
-        public List<string>  count { get; set; }
+        public string[] id { get; set; }
+        public string[]  count { get; set; }
         public string action { get; set; }
        
     }

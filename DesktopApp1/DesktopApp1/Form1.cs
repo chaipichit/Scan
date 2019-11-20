@@ -8,6 +8,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 using RestSharp;
 
 // This is the code for your desktop app.
@@ -20,6 +21,8 @@ namespace DesktopApp1
     public partial class Form1 : Form
     {
 
+        Form2 testDialog = new Form2();
+
         ProductModel product;
 
         String output = "";
@@ -30,9 +33,17 @@ namespace DesktopApp1
         public Form1()
         {
             InitializeComponent();
+            LoadData();
             initListView();
 
         }
+
+        private void LoadData(){
+
+            ConnectAPI();
+
+
+}
         private void initListView()
         {
             listView1.View = View.Details;
@@ -169,6 +180,7 @@ namespace DesktopApp1
             var request = new RestRequest(Method.GET);
             request.AddHeader("Accept", "application/json");
 
+
             var response = client.Execute<ProductModel>(request);
 
             //Response 200 OK
@@ -176,7 +188,7 @@ namespace DesktopApp1
             {
                 //Do something with response.Content
 
-
+                SendKeys.SendWait("{ESC}");
                 product = response.Data;
                 var searchForId = "P1001";
                 int index = product.product.FindIndex(p => p.id == searchForId);
@@ -225,10 +237,26 @@ namespace DesktopApp1
             product = new ProductModel();
             var client = new RestClient("https://script.google.com/macros/s/AKfycbyURj7T8d8gz6WdgHWy3l6XtLOVAN0CCc-EFufnAw/exec");
             var request = new RestRequest(Method.POST);
-            request.AddHeader("Accept", "application/json");
-            request.AddParameter("action", "sell");
-            request.AddParameter("id", "P1001");
-            request.AddParameter("count", "2");
+            /* request.AddHeader("Accept", "application/json");
+             request.AddParameter("action", "sell");
+             request.AddParameter("id", "P1001");
+             request.AddParameter("count", "2");*/
+
+            PostModel postModel = new PostModel();
+            postModel.action = "sell";
+            postModel.id = new string[] { "P1001", "P1002" };
+            postModel.count = new string[] { "2", "1" };
+
+            string json = JsonConvert.SerializeObject(postModel);
+            // {
+            //   "Name": "Apple",
+            //   "Expiry": "2008-12-28T00:00:00",
+            //   "Sizes": [
+            //     "Small"
+            //   ]
+            // }
+            request.RequestFormat = DataFormat.Json;
+            request.AddBody(json);
             var response = client.Execute<SellModel>(request);
 
             //Response 200 OK
@@ -275,8 +303,29 @@ namespace DesktopApp1
         private void Button3_Click(object sender, EventArgs e)
         {
 
-            MessageBox.Show("เงินทอน  " +( System.Convert.ToInt32(textBox4.Text)- System.Convert.ToInt32(label11.Text)) );
+            //  MessageBox.Show("เงินทอน  " +( System.Convert.ToInt32(textBox4.Text)- System.Convert.ToInt32(label11.Text)) );
+            testDialog.setLabel("เงินทอน  " + (System.Convert.ToInt32(textBox4.Text) - System.Convert.ToInt32(label11.Text)));
+            testDialog.ShowDialog(this);
             SellApi();
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.DrawString(textBox4.Text, new Font("Times New Roman",40,FontStyle.Bold), Brushes.Black,new PointF(100,100));
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            if (printPreviewDialog1.ShowDialog() == DialogResult.OK)
+            {
+                printDocument1.Print();
+
+            }
+        }
+
+        private void printPreviewDialog1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

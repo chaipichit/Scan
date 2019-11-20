@@ -31,3 +31,4 @@ C:\Scan\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.csproj.GenerateResource.ca
 C:\Scan\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.csproj.CopyComplete
 C:\Scan\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.exe
 C:\Scan\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.pdb
+C:\Scan\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.Form2.resources

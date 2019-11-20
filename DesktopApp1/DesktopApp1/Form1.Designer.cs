@@ -28,10 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button7 = new System.Windows.Forms.Button();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.button6 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -54,9 +59,8 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -79,6 +83,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.button7);
             this.tabPage1.Controls.Add(this.listView1);
             this.tabPage1.Controls.Add(this.button6);
             this.tabPage1.Controls.Add(this.button5);
@@ -109,6 +114,34 @@
             this.tabPage1.Text = "หน้าหลัก";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(1058, 466);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(75, 23);
+            this.button7.TabIndex = 37;
+            this.button7.Text = "button7";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // listView1
+            // 
+            this.listView1.Location = new System.Drawing.Point(0, 164);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(996, 257);
+            this.listView1.TabIndex = 36;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(919, 132);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(35, 26);
+            this.button6.TabIndex = 35;
+            this.button6.Text = "+";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.Button6_Click);
+            // 
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(1027, 70);
@@ -128,6 +161,16 @@
             this.label17.Size = new System.Drawing.Size(41, 13);
             this.label17.TabIndex = 33;
             this.label17.Text = "label17";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(960, 132);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(36, 26);
+            this.button4.TabIndex = 32;
+            this.button4.Text = "-";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.Button4_Click);
             // 
             // button3
             // 
@@ -355,33 +398,20 @@
             this.label18.TabIndex = 1;
             this.label18.Text = "label18";
             // 
-            // button4
+            // printDocument1
             // 
-            this.button4.Location = new System.Drawing.Point(960, 132);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(36, 26);
-            this.button4.TabIndex = 32;
-            this.button4.Text = "-";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.Button4_Click);
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
             // 
-            // button6
+            // printPreviewDialog1
             // 
-            this.button6.Location = new System.Drawing.Point(919, 132);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(35, 26);
-            this.button6.TabIndex = 35;
-            this.button6.Text = "+";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.Button6_Click);
-            // 
-            // listView1
-            // 
-            this.listView1.Location = new System.Drawing.Point(0, 164);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(996, 257);
-            this.listView1.TabIndex = 36;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Document = this.printDocument1;
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
             // 
             // Form1
             // 
@@ -438,6 +468,9 @@
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button7;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
     }
 }
 
