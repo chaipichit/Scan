@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -62,11 +63,7 @@ namespace DesktopApp1
         }
 
 
-        private void Button2_Click_1(object sender, EventArgs e)
-        {
-            listBox1.Items.Add("1 \t 01000100 \t กางเกงยีนส์ขายาว เบอร์ 28 \t150 \t1 \t150  ");
-
-        }
+        
 
         private void TextBox4_TextChanged(object sender, EventArgs e)
         {
@@ -99,11 +96,7 @@ namespace DesktopApp1
 
         }
 
-        private void Button4_Click(object sender, EventArgs e)
-        {
-            listBox1.Items.Remove(listBox1.SelectedItem);
-        }
-
+      
 
 
         private void TabControl1_KeyPress(object sender, KeyPressEventArgs e)
@@ -128,7 +121,6 @@ namespace DesktopApp1
                     MessageBox.Show("เงินทอน  " + (System.Convert.ToInt32(textBox4.Text) - System.Convert.ToInt32(label11.Text)));
 
 
-                    listBox1.Items.Clear();
 
                 }
                 else
@@ -278,7 +270,6 @@ namespace DesktopApp1
 
 
 
-            int a = listBox1.SelectedIndex;
 
             //  string tmp = listBox1.Items[a].ToString();
             // String[] couds = tmp.Split('\t');
@@ -309,24 +300,22 @@ namespace DesktopApp1
             SellApi();
         }
 
-        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        private void printDocument1_PrintPage_1(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            e.Graphics.DrawString(textBox4.Text, new Font("Times New Roman",40,FontStyle.Bold), Brushes.Black,new PointF(100,100));
+            e.Graphics.DrawString(textBox4.Text, new Font("Arial", 40, FontStyle.Bold), Brushes.Black, new PointF(100, 100));
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
+
             if (printPreviewDialog1.ShowDialog() == DialogResult.OK)
             {
-                printDocument1.Print();
+              //  printDocument1.Print();
 
             }
         }
+       
 
-        private void printPreviewDialog1_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
     
