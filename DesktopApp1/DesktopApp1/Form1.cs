@@ -36,6 +36,8 @@ namespace DesktopApp1
             InitializeComponent();
             LoadData();
             initListView();
+            printDocument1.PrintPage += new PrintPageEventHandler(printDocument1_PrintPage_1);
+
 
         }
 
@@ -302,15 +304,136 @@ namespace DesktopApp1
 
         private void printDocument1_PrintPage_1(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            e.Graphics.DrawString(textBox4.Text, new Font("Arial", 40, FontStyle.Bold), Brushes.Black, new PointF(100, 100));
+
+
+
+            var fnt = new Font("Times new Roman", 10, FontStyle.Bold);
+
+            int x = 0, y = 0;
+            int dy = (int)fnt.GetHeight(e.Graphics) * 1;
+
+
+            ///////////////////
+            ///
+
+            int receptno = 42;
+            Graphics graphics = e.Graphics;
+            Font font7 = new Font("Courier New", 7);
+            Font font8 = new Font("Courier New", 8);
+            Font font10 = new Font("Courier New", 10);
+            Font font12 = new Font("Courier New", 12);
+            Font font14 = new Font("Courier New", 14);
+
+            float leading = 4;
+            float lineheight7 = font7.GetHeight() + leading;
+            float lineheight8 = font8.GetHeight() + leading;
+            float lineheight10 = font10.GetHeight() + leading;
+            float lineheight12 = font12.GetHeight() + leading;
+            float lineheight14 = font14.GetHeight() + leading;
+
+            float startX = 0;
+            float startY = leading;
+            float Offset = 0;
+
+            StringFormat formatLeft = new StringFormat(StringFormatFlags.NoClip);
+            StringFormat formatCenter = new StringFormat(formatLeft);
+            StringFormat formatRight = new StringFormat(formatLeft);
+
+
+            formatCenter.Alignment = StringAlignment.Center;
+            formatRight.Alignment = StringAlignment.Far;
+            formatLeft.Alignment = StringAlignment.Near;
+
+
+            SizeF layoutSize = new SizeF(e.PageSettings.PrintableArea.Width - Offset * 2, lineheight14);
+
+            RectangleF layout = new RectangleF(new PointF(startX, startY + Offset), layoutSize);
+
+            Brush brush = Brushes.Black;
+
+              /*  graphics.DrawString("Welcome to MSST", font14, brush, layout, formatCenter);
+                Offset = Offset + lineheight14;
+                layout = new RectangleF(new PointF(startX, startY + Offset), layoutSize);
+                graphics.DrawString("Recept No :" + receptno + 1, font14, brush, layout, formatLeft);
+                Offset = Offset + lineheight14;
+                layout = new RectangleF(new PointF(startX, startY + Offset), layoutSize);
+                graphics.DrawString("Date :" + DateTime.Today, font12, brush, layout, formatLeft);
+                Offset = Offset + lineheight12;
+                layout = new RectangleF(new PointF(startX, startY + Offset), layoutSize);
+                graphics.DrawString("".PadRight(46, '_'), font10, brush, layout, formatLeft);
+                Offset = Offset + lineheight10;
+                layout = new RectangleF(new PointF(startX, startY + Offset), layoutSize);
+
+                graphics.DrawString("copyright SO", font10, brush, layout, formatRight);
+                Offset = Offset + lineheight10;
+
+                font10.Dispose(); font12.Dispose(); font14.Dispose();
+                */
+            graphics.DrawString("เหมือนบ้าน", font14, brush, layout, formatCenter);
+            Offset = Offset + lineheight14;
+            layout = new RectangleF(new PointF(startX, startY + Offset), layoutSize);
+            graphics.DrawString("แฟชั่นเครื่องเเต่งกายและเครื่องนอน", font8, brush, layout, formatCenter);
+            Offset = Offset + lineheight8;
+            layout = new RectangleF(new PointF(startX, startY + Offset), layoutSize);
+            graphics.DrawString("โทร 0962615027", font8, brush, layout, formatCenter);
+            Offset = Offset + lineheight8;
+            layout = new RectangleF(new PointF(startX, startY + Offset), layoutSize);
+            graphics.DrawString("ใบเสร็จรับเงิน", font8, brush, layout, formatLeft);
+            Offset = Offset + lineheight8;
+            layout = new RectangleF(new PointF(startX, startY + Offset), layoutSize);
+
+
+            //////////////////////////////////
+            graphics.DrawString("พิมพ์:"+DateTime.Today, font8, brush, layout, formatLeft);
+            Offset = Offset + lineheight8;
+            layout = new RectangleF(new PointF(startX, startY + Offset), layoutSize);
+            String nameOrder = "ชุดเด็กลายลิขสิทธ์ฟหกหกหกหกห";
+            if (nameOrder.Length > 24)
+            {
+               
+                graphics.DrawString("1  " + nameOrder.Substring(0, 24), font7, brush, layout, formatLeft);
+                graphics.DrawString("@150" + "  1500", font7, brush, layout, formatRight);
+                Offset = Offset + lineheight7;
+                layout = new RectangleF(new PointF(startX, startY + Offset), layoutSize);
+            }
+            else
+            {
+                graphics.DrawString("1  " + nameOrder, font7, brush, layout, formatLeft);
+                graphics.DrawString("@150" + "  1500", font7, brush, layout, formatRight);
+                Offset = Offset + lineheight7;
+                layout = new RectangleF(new PointF(startX, startY + Offset), layoutSize);
+            }
+            ////////////////////////////////////////
+            graphics.DrawString("ราคารวม: ", font8, brush, layout, formatLeft);
+            graphics.DrawString("400  บาท", font8, brush, layout, formatRight);
+            Offset = Offset + lineheight8;
+            layout = new RectangleF(new PointF(startX, startY + Offset), layoutSize);
+            graphics.DrawString("สว่นลด: ", font8, brush, layout, formatLeft);
+            graphics.DrawString("0  บาท", font8, brush, layout, formatRight);
+            Offset = Offset + lineheight8;
+            layout = new RectangleF(new PointF(startX, startY + Offset), layoutSize);
+            graphics.DrawString("รวมทั้งหมด: ", font8, brush, layout, formatLeft);
+            graphics.DrawString("400  บาท", font8, brush, layout, formatRight);
+            Offset = Offset + lineheight8;
+            layout = new RectangleF(new PointF(startX, startY + Offset), layoutSize);
+            graphics.DrawString("***สินค้าซื้อแล้วไม่รับเปลี่ยนรับคืน***", font7, brush, layout, formatCenter);
+            Offset = Offset + lineheight7;
+            layout = new RectangleF(new PointF(startX, startY + Offset), layoutSize);
+            graphics.DrawString("**ขอบคุณที่ใช้บริการ**", font8, brush, layout, formatCenter);
+
+            /////////////////////
+
+            // e.Graphics.DrawString("เหมือนบ้าน", fnt, new SolidBrush(Color.Black), new Point(x, y)); y += dy;
+            //e.Graphics.DrawString("Man2", fnt, new SolidBrush(Color.Black), new Point(x, y)); y += dy;
+
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-
+            printPreviewDialog1.PrintPreviewControl.Zoom = 150 / 100f;
             if (printPreviewDialog1.ShowDialog() == DialogResult.OK)
             {
-              //  printDocument1.Print();
+                printDocument1.Print();
 
             }
         }
