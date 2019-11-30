@@ -32,3 +32,12 @@ C:\Scan\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.csproj.CopyComplete
 C:\Scan\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.exe
 C:\Scan\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.pdb
 C:\Scan\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.Form2.resources
+C:\Scan\DesktopApp1\DesktopApp1\bin\Debug\zxing.dll
+C:\Scan\DesktopApp1\DesktopApp1\bin\Debug\zxing.presentation.dll
+C:\Scan\DesktopApp1\DesktopApp1\bin\Debug\zxing.pdb
+C:\Scan\DesktopApp1\DesktopApp1\bin\Debug\zxing.xml
+C:\Scan\DesktopApp1\DesktopApp1\bin\Debug\zxing.presentation.pdb
+C:\Scan\DesktopApp1\DesktopApp1\bin\Debug\zxing.presentation.xml
+C:\Scan\DesktopApp1\DesktopApp1\bin\Debug\IronBarCode.dll
+C:\Scan\DesktopApp1\DesktopApp1\bin\Debug\IronBarCode.xml
+C:\Scan\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.Form3.resources
