@@ -84,8 +84,13 @@
     <Compile Include="Form3.Designer.cs">
       <DependentUpon>Form3.cs</DependentUpon>
     </Compile>
+    <Compile Include="History.cs" />
+    <Compile Include="PostSellMount.cs" />
+    <Compile Include="SellMountModel.cs" />
+    <Compile Include="PostHistrory.cs" />
     <Compile Include="PostModel.cs" />
     <Compile Include="Model.cs" />
+    <Compile Include="HistoryModel.cs" />
     <Compile Include="SellModel.cs" />
     <Compile Include="ProductModel.cs" />
     <Compile Include="ProductProcessor.cs" />

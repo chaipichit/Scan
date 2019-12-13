@@ -6,17 +6,20 @@ using System.Threading.Tasks;
 
 namespace DesktopApp1
 {
-    public class Product
+    public class History
     {
-        public string id { get; set; }
         public string barcode { get; set; }
-        public string stock { get; set; }
         public string name { get; set; }
         public string sell { get; set; }
-        public string sell2 { get; set; }
-
-        public string sell3 { get; set; }
-
+        public string count { get; set; }
         public string cost { get; set; }
+
+        public string sum { get; set; }
+
+        public string sellType { get; set; }
+
+        public string profit { get; set; }
+        public string time { get; set; }
+
     }
 }

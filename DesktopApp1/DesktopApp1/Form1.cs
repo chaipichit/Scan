@@ -12,6 +12,8 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using RestSharp;
 using ZXing;
+using System.Runtime.InteropServices;
+
 
 // This is the code for your desktop app.
 // Press Ctrl+F5 (or go to Debug > Start Without Debugging) to run your app.
@@ -26,33 +28,108 @@ namespace DesktopApp1
         Form2 testDialog = new Form2();
         Form3 printDialog = new Form3();
         ProductModel product;
-
+        HistoryModel histiry;
+        SellMountModel sellMountModel;
         String output = "";
         String keyboard = "";
         int price1 = 0;
         int size = 0;
         int count = 1;
+        int j = 0;
         String change = "";
         public Form1()
         {
             InitializeComponent();
             LoadData();
             initListView();
-            initListView2();
+            initListViewHistory();
+            initDropDown();
+            LoadSellOfToday();
+            radioButton1.Checked = true;
             textBox5.Text = "0";
         
 
         }
+
+        private void LoadSellOfToday()
+        {
+            var date = DateTime.Now+"";
+            var dateOnly = date.Split(' ');
+
+            LoadHistory(dateOnly[0]);
+        }
+
+        private void initDropDown()
+        {
+            comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
+            comboBox1.Items.Add("มกราคม");
+            comboBox1.Items.Add("กุมภาพันธ์");
+            comboBox1.Items.Add("มีนาคม");
+            comboBox1.Items.Add("เมษายน");
+            comboBox1.Items.Add("พฤษภาคม");
+            comboBox1.Items.Add("มิถุนายน");
+            comboBox1.Items.Add("กรกฏาคม");
+            comboBox1.Items.Add("สิงหาคม");
+            comboBox1.Items.Add("กันยายน");
+            comboBox1.Items.Add("ตุลาคม");
+            comboBox1.Items.Add("พฤษจิกายน");
+            comboBox1.Items.Add("ธันวาคม");
+
+            var date = DateTime.Now.Year;
+            var mount = DateTime.Now.Month;
+            label15.Text = DateTime.Now+"";
+
+            comboBox1.SelectedIndex = mount-1;
+            
+
+        
+            for(int i =0;i<5; i++)
+            {
+                comboBox2.Items.Add(date -i+ "");
+            }
+            comboBox2.SelectedIndex = comboBox2.FindStringExact(date+"");
+
+            upDateMoney(comboBox1.SelectedIndex + 1 + "", comboBox2.SelectedItem + "");
+
+        }
+
+        private void initListViewHistory()
+        {
+            listView3.Items.Clear();
+            listView3.View = View.Details;
+            listView3.GridLines = true;
+            listView3.FullRowSelect = true;
+
+            listView3.Columns.Add("บาร์โค้ด", 100);
+            listView3.Columns.Add("ชื่อสินค้า", 100);
+
+            listView3.Columns.Add("ทุน", 50);
+            listView3.Columns.Add("ราคาขาย", 70);
+            listView3.Columns.Add("จำนวน", 50);
+
+            listView3.Columns.Add("รวม", 50);
+            listView3.Columns.Add("กำไร", 50);
+            listView3.Columns.Add("ประเภทการขาย", 100);
+            listView3.Columns.Add("เวลา", 100);
+
+
+        }
+
         private void initListView2()
         {
+            listView2.Items.Clear();
             listView2.View = View.Details;
             listView2.GridLines = true;
             listView2.FullRowSelect = true;
 
-            listView2.Columns.Add("บาร์โค้ด", 50);
+            listView2.Columns.Add("บาร์โค้ด", 100);
             listView2.Columns.Add("ชื่อสินค้า", 100);
-            listView2.Columns.Add("ราคา", 200);
-            listView2.Columns.Add("ต้นทุน", 70);
+
+            listView2.Columns.Add("ราคาปลีก", 50);
+            listView2.Columns.Add("ราคาส่ง", 50);
+            listView2.Columns.Add("ราคาสามตัว", 50);
+
+            listView2.Columns.Add("ต้นทุน", 50);
             listView2.Columns.Add("จำนวน", 50);
 
             for (int i = 0; i < product.product.Count; i++)
@@ -60,9 +137,11 @@ namespace DesktopApp1
                 string[] arr = new string[7];
                 arr[0] = product.product[i].barcode + ""; //บาร์โค้ด
                 arr[1] = product.product[i].name;//ชื่อสินค้า
-                arr[2] = product.product[i].price; // ราคา
-                arr[3] = product.product[i].cost;//ต้นทุน
-                arr[4] = product.product[i].stock + "";//จำนวน                
+                arr[2] = product.product[i].sell; // ราคาปลีก
+                arr[3] = product.product[i].sell2; // ราคาส่ง
+                arr[4] = product.product[i].sell3; // ราคาสาม
+                arr[5] = product.product[i].cost;//ต้นทุน
+                arr[6] = product.product[i].stock + "";//จำนวน                
                 var itm = new ListViewItem(arr);
                 listView2.Items.Add(itm);
             }
@@ -126,22 +205,6 @@ namespace DesktopApp1
 
         }
 
-      
-
-
-        private void TabControl1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (textBox4.ContainsFocus == true)
-            {
-
-            }
-            else
-            {
-                textBox1.Focus();
-
-            }
-        }
-
         private void TabControl1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyValue == (char)Keys.Enter) {
@@ -149,33 +212,70 @@ namespace DesktopApp1
                 if (textBox4.ContainsFocus == true)
                 {
                     MessageBox.Show("เงินทอน  " + (System.Convert.ToInt32(textBox4.Text) - System.Convert.ToInt32(label11.Text)));
-
-
-
                 }
                 else
                 {
+                    int index = -1;
                     var searchForId = textBox1.Text;
-                    int index = product.product.FindIndex(p => p.barcode == searchForId);
-                    string name = product.product[index].name;
-                    string price = product.product[index].price;
-                    int result = System.Convert.ToInt32(price);
-                    price1 += result;
-                    size++;
-                    string[] arr = new string[7];
-                    arr[0] = size + ""; //รายการ
-                    arr[1] = searchForId;//รหัสสินค้า
-                    arr[2] = name; // ชื่อสินค้า
-                    arr[3] = price;//ราคา
-                    arr[4] = count + "";//จำนวน
-                    arr[5] = (result * count) + "";// รวม
-                                                   // listBox1.Items.Add(size + "\t" + searchForId + "\t" + name + "\t" + price + " \t" + " x \t" + count + "\t" + (result * count));
+                    index = product.product.FindIndex(p => p.barcode == searchForId);
+                    if (index == -1)
+                    {
+                        MessageBox.Show("ไม่พบสินค้า");
+                        textBox1.Text = "";
 
-                    var itm = new ListViewItem(arr);
-                    listView1.Items.Add(itm);
+                    }
+                    else
+                    {
 
-                    label11.Text = price1 + "";
-                    textBox1.Text = "";
+                        //////// เปลี่ยนราคาตรงนี่//////////////
+                        string name = product.product[index].name;
+                        string price = "0";
+
+                        if (radioButton1.Checked)
+                        {
+                             price = product.product[index].sell;
+
+                        }
+                        else if(radioButton2.Checked)
+                            {
+                           price = product.product[index].sell2;
+
+                        }
+                        else if (radioButton3.Checked)
+                        {
+                           price = product.product[index].sell3;
+
+                        }
+                        int result = System.Convert.ToInt32(price);
+                        price1 += result;
+                        size++;
+                        string[] arr = new string[7];
+                        arr[0] = size + ""; //รายการ
+                        arr[1] = searchForId;//รหัสสินค้า
+                        arr[2] = name; // ชื่อสินค้า
+                        arr[3] = price;//ราคา
+                        arr[4] = count + "";//จำนวน
+                        arr[5] = (result * count) + "";// รวม
+                                                       // listBox1.Items.Add(size + "\t" + searchForId + "\t" + name + "\t" + price + " \t" + " x \t" + count + "\t" + (result * count));
+                        var fond =listView1.FindItemWithText(searchForId);
+                        if(fond != null){
+                            var a = listView1.Items.IndexOf(fond);
+                            Console.WriteLine("Man : " + a);
+                            listView1.Items[a].SubItems[4].Text = (System.Convert.ToInt32(listView1.Items[a].SubItems[4].Text) + 1) + "";
+                            listView1.Items[a].SubItems[5].Text = (System.Convert.ToInt32(listView1.Items[a].SubItems[4].Text) * System.Convert.ToInt32(listView1.Items[a].SubItems[3].Text)) + "";
+
+                        }
+                        else
+                        {
+                            var itm = new ListViewItem(arr);
+                            listView1.Items.Add(itm);
+
+                        }
+
+                        label11.Text = price1 + "";
+                        textBox1.Text = "";
+                    }
+                  
 
                 }
 
@@ -211,11 +311,15 @@ namespace DesktopApp1
                 //Do something with response.Content
 
                 SendKeys.SendWait("{ESC}");
+
                 product = response.Data;
-                var searchForId = "P100000070";
-                int index = product.product.FindIndex(p => p.barcode == searchForId);
-                string name = product.product[index].name;
-                label17.Text = name;
+                initListView2();
+                button9.Enabled = true;
+
+                /* var searchForId = "P100000070";
+                 int index = product.product.FindIndex(p => p.barcode == searchForId);
+                 string name = product.product[index].name;*/
+                //label17.Text = name;
             }
         }
 
@@ -235,7 +339,7 @@ namespace DesktopApp1
             var searchForId = textBox1.Text;
             int index = product.product.FindIndex(p => p.id == searchForId);
             string name = product.product[index].name;
-            string price = product.product[index].price;
+            string price = product.product[index].sell;
             int result = System.Convert.ToInt32(price);
             price1 += result;
 
@@ -256,7 +360,6 @@ namespace DesktopApp1
 
         private void SellApi()
         {
-            product = new ProductModel();
             var client = new RestClient("https://script.google.com/macros/s/AKfycbyURj7T8d8gz6WdgHWy3l6XtLOVAN0CCc-EFufnAw/exec");
             var request = new RestRequest(Method.POST);
             /* request.AddHeader("Accept", "application/json");
@@ -266,8 +369,44 @@ namespace DesktopApp1
 
             PostModel postModel = new PostModel();
             postModel.action = "sell";
-            postModel.id = new string[] { "P1001", "P1002" };
-            postModel.count = new string[] { "2", "1" };
+            postModel.Time = DateTime.Now.ToString();
+            postModel.id = new List<string>();
+            postModel.name = new List<string>();
+            postModel.sum = new List<string>();
+            postModel.sell = new List<string>();
+            postModel.count = new List<string>();
+            postModel.cost = new List<string>();
+
+            if (radioButton1.Checked)
+            {
+                postModel.sellType = "ขายปลีก";
+
+            }
+            else if (radioButton2.Checked)
+            {
+                postModel.sellType = "ขายส่ง";
+
+            }
+            else if (radioButton3.Checked)
+            {
+                postModel.sellType = "ขายราคาสาม";
+
+            }
+
+            var id = new List<string>();
+            for (int i = 0; i < listView1.Items.Count; i++)
+            {
+                postModel.id.Add(listView1.Items[i].SubItems[1].Text);
+                postModel.name.Add(listView1.Items[i].SubItems[2].Text);
+                postModel.sell.Add(listView1.Items[i].SubItems[3].Text);
+                postModel.count.Add(listView1.Items[i].SubItems[4].Text);
+                postModel.sum.Add(listView1.Items[i].SubItems[5].Text);
+
+               var a = listView1.Items[i].SubItems[1].Text;
+                int index = product.product.FindIndex(p => p.barcode == a);
+                string cost = product.product[index].cost;
+                postModel.cost.Add(cost);
+            }
 
             string json = JsonConvert.SerializeObject(postModel);
             // {
@@ -284,6 +423,9 @@ namespace DesktopApp1
             //Response 200 OK
             if (response.StatusCode.Equals(HttpStatusCode.OK))
             {
+                listView1.Items.Clear();
+                label11.Text = "0";
+                textBox4.Text = "0";
                 //Do something with response.Content
 
 
@@ -486,8 +628,7 @@ namespace DesktopApp1
 
         private void printDocument1_PrintPage_2(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-
-
+          
             var fnt = new Font("Times new Roman", 10, FontStyle.Bold);
 
             ///////////////////
@@ -544,6 +685,13 @@ namespace DesktopApp1
             graphics.DrawString("ราคา", font7, brush, layout, formatLeft);         
             graphics.DrawString(listView2.SelectedItems[0].SubItems[3].Text, font7, brush, layout, formatCenter);
             graphics.DrawString("บาท", font7, brush, layout, formatRight);
+            e.HasMorePages = true;
+
+            if (j == System.Convert.ToInt32(listView2.SelectedItems[0].SubItems[6].Text)){
+                e.HasMorePages = false;
+                return;
+            }
+            j++;
 
 
 
@@ -564,7 +712,7 @@ namespace DesktopApp1
             printPreviewDialog2.PrintPreviewControl.Zoom = 150 / 100f;
             if (printPreviewDialog2.ShowDialog() == DialogResult.OK)
             {
-               
+                j = 1;
                 printDocument2.Print();
 
             }
@@ -583,7 +731,272 @@ namespace DesktopApp1
 
         private void button9_Click(object sender, EventArgs e)
         {
-            product = new ProductModel();
+            button9.Enabled = false;
+            if (string.IsNullOrWhiteSpace(tbNameProduct.Text) || string.IsNullOrWhiteSpace(tbCount.Text) || string.IsNullOrWhiteSpace(tbCost.Text)  || string.IsNullOrWhiteSpace(tbSell.Text) 
+                || string.IsNullOrWhiteSpace(tbSell2.Text)|| string.IsNullOrWhiteSpace(tbSell3.Text))
+            {
+                MessageBox.Show("กรุณากรอกข้อมูลให้ครบ");
+            }
+            else
+            {
+                var client = new RestClient("https://script.google.com/macros/s/AKfycbyURj7T8d8gz6WdgHWy3l6XtLOVAN0CCc-EFufnAw/exec");
+                var request = new RestRequest(Method.POST);
+                /* request.AddHeader("Accept", "application/json");
+                 request.AddParameter("action", "sell");
+                 request.AddParameter("id", "P1001");
+                 request.AddParameter("count", "2");*/
+
+                AddModel postModel = new AddModel();
+                postModel.action = "add";
+                /*   postModel.name = new string[] { "กางเกงตัวละ100" };
+                   postModel.count = new string[] { "10"};
+                   postModel.cost = new string[] { "20" };
+                   postModel.price = new string[] { "50" };
+                   postModel.date = new string[] { DateTime.Now+"" };*/
+                postModel.name = new string[] { tbNameProduct.Text };
+                postModel.count = new string[] { tbCount.Text };
+                postModel.cost = new string[] { tbCost.Text };
+                postModel.sell = new string[] { tbSell.Text };
+                postModel.sell2 = new string[] { tbSell2.Text };
+                postModel.sell3 = new string[] { tbSell3.Text };
+                postModel.date = new string[] { DateTime.Now+"" };
+                string json = JsonConvert.SerializeObject(postModel);
+                // {
+                //   "Name": "Apple",
+                //   "Expiry": "2008-12-28T00:00:00",
+                //   "Sizes": [
+                //     "Small"
+                //   ]
+                // }
+                request.RequestFormat = DataFormat.Json;
+                request.AddBody(json);
+                var response = client.Execute<SellModel>(request);
+
+                //Response 200 OK
+                if (response.StatusCode.Equals(HttpStatusCode.OK))
+                {
+
+                    //Do something with response.Content
+
+                    LoadData();
+
+                   // initListView2();
+                    /*   product = response.Data;
+                       var searchForId = "P1001";
+                       int index = product.product.FindIndex(p => p.id == searchForId);
+                       string name = product.product[index].name;
+                       label17.Text = name;*/
+                }
+            }
+
+           
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+          
+
+
+
+            printDialog.setPrintNumber(listView2.SelectedItems[0].SubItems[4]);
+            
+            printDialog.ShowDialog(this);
+            printDocument2.PrinterSettings.PrinterName = "BarcodePrint";
+            if (printDialog1.ShowDialog() == DialogResult.OK)
+            {
+                j = 1;
+                printDocument2.Print();
+
+            }
+            /* printPreviewDialog2.PrintPreviewControl.Zoom = 150 / 100f;
+
+
+                 if (printPreviewDialog2.ShowDialog() == DialogResult.OK)
+                 {
+
+
+
+
+
+             }*/
+
+        }
+
+        public int getPrintNumber()
+        {
+            return (System.Convert.ToInt32(listView2.SelectedItems[0].SubItems[4].Text));
+        }
+
+        private void tbCost_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbCost_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+        (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tbSell_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+        (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tbSell2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+        (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tbSell3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+        (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tbCount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) &&
+        (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+
+            calculateNew();
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            calculateNew();
+
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            calculateNew();
+
+        }
+
+        private void calculateNew()
+        {
+            label11.Text = "0";
+            int sum = 0;
+            if (radioButton1.Checked)
+            {
+                for (int i = 0; i < listView1.Items.Count; i++)
+                {
+                    int index = product.product.FindIndex(p => p.barcode == listView1.Items[i].SubItems[1].Text);
+                    int price =System.Convert.ToInt32( product.product[index].sell);
+                    listView1.Items[i].SubItems[3].Text = price+"";
+                    listView1.Items[i].SubItems[5].Text = (price * System.Convert.ToInt32(listView1.Items[i].SubItems[4].Text)) + "";
+                    sum += (price * System.Convert.ToInt32(listView1.Items[0].SubItems[4].Text));
+
+                }
+
+            }
+            else if (radioButton2.Checked)
+            {
+                for (int i = 0; i < listView1.Items.Count; i++)
+                {
+                    int index = product.product.FindIndex(p => p.barcode == listView1.Items[i].SubItems[1].Text);
+                    int price = System.Convert.ToInt32(product.product[index].sell2);
+                    listView1.Items[i].SubItems[3].Text = price + "";
+                    listView1.Items[i].SubItems[5].Text = (price * System.Convert.ToInt32(listView1.Items[i].SubItems[4].Text)) + "";
+                    sum += (price * System.Convert.ToInt32(listView1.Items[0].SubItems[4].Text));
+
+                }
+
+            }
+            else if (radioButton3.Checked)
+            {
+                for (int i = 0; i < listView1.Items.Count; i++)
+                {
+                    int index = product.product.FindIndex(p => p.barcode == listView1.Items[i].SubItems[1].Text);
+                    int price = System.Convert.ToInt32(product.product[index].sell3);
+                    listView1.Items[i].SubItems[3].Text = price + "";
+                    listView1.Items[i].SubItems[5].Text = (price * System.Convert.ToInt32(listView1.Items[i].SubItems[4].Text)) + "";
+                    sum += (price * System.Convert.ToInt32(listView1.Items[0].SubItems[4].Text));
+
+                }
+            }
+            label11.Text = sum + "";
+
+
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            printPreviewDialog2.ShowDialog();
+        }
+
+        private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
+        {
+
+        }
+
+        private void monthCalendar1_DateSelected(object sender, DateRangeEventArgs e)
+        {
+
+            var date = e.Start.ToString();
+            var dateOnly = date.Split(' ');
+            label15.Text = dateOnly[0];
+            LoadHistory(dateOnly[0]);
+
+
+        }
+
+        private void LoadHistory(string date)
+        {
+            histiry = new HistoryModel();
             var client = new RestClient("https://script.google.com/macros/s/AKfycbyURj7T8d8gz6WdgHWy3l6XtLOVAN0CCc-EFufnAw/exec");
             var request = new RestRequest(Method.POST);
             /* request.AddHeader("Accept", "application/json");
@@ -591,15 +1004,11 @@ namespace DesktopApp1
              request.AddParameter("id", "P1001");
              request.AddParameter("count", "2");*/
 
-            AddModel postModel = new AddModel();
-            postModel.action = "add";
-            postModel.name = new string[] { "กางเกงตัวละ100" };
-            postModel.count = new string[] { "10"};
-            postModel.cost = new string[] { "20" };
-            postModel.price = new string[] { "50" };
-            postModel.date = new string[] { DateTime.Now+"" };
+            PostHistory postHistory = new PostHistory();
 
-            string json = JsonConvert.SerializeObject(postModel);
+            postHistory.action = "history";
+            postHistory.dateTime = date;
+            string json = JsonConvert.SerializeObject(postHistory);
             // {
             //   "Name": "Apple",
             //   "Expiry": "2008-12-28T00:00:00",
@@ -609,7 +1018,7 @@ namespace DesktopApp1
             // }
             request.RequestFormat = DataFormat.Json;
             request.AddBody(json);
-            var response = client.Execute<SellModel>(request);
+            var response = client.Execute<HistoryModel>(request);
 
             //Response 200 OK
             if (response.StatusCode.Equals(HttpStatusCode.OK))
@@ -617,8 +1026,11 @@ namespace DesktopApp1
 
                 //Do something with response.Content
 
-                LoadData();
-                initListView2();
+                histiry = response.Data;
+              //  MessageBox.Show(response.Data.message);
+                upDateListHistory();
+
+                // initListView2();
                 /*   product = response.Data;
                    var searchForId = "P1001";
                    int index = product.product.FindIndex(p => p.id == searchForId);
@@ -627,26 +1039,91 @@ namespace DesktopApp1
             }
         }
 
-        private void button10_Click(object sender, EventArgs e)
+        private void upDateListHistory()
         {
-          
-                printDialog.ShowDialog(this);
-                if (printDialog.ShowDialog() == DialogResult.OK)
-                {
-                printPreviewDialog2.PrintPreviewControl.Zoom = 150 / 100f;
-                if (printPreviewDialog2.ShowDialog() == DialogResult.OK)
-                {
-                    printDocument2.Print();
+            listView3.Items.Clear();
 
-                }
+            for (int i = 0; i < histiry.history.Count; i++)
+            {
+                string[] arr = new string[9];
+                arr[0] = histiry.history[i].barcode + ""; //บาร์โค้ด
+                arr[1] = histiry.history[i].name;//ชื่อสินค้า
+                arr[2] = histiry.history[i].cost; // ทุน
+                arr[3] = histiry.history[i].sell; // ราคาขาย
+                arr[4] = histiry.history[i].count; // จำนวน
+                arr[5] = histiry.history[i].sum;//รวม
+                arr[6] = histiry.history[i].profit + "";//กำไร
+                arr[7] = histiry.history[i].sellType + "";//ประเภทการขาย
+                arr[8] = histiry.history[i].time.Replace('a',' ') + "";//เวลา
+                var itm = new ListViewItem(arr);
+                listView3.Items.Add(itm);
+            }
+            label16.Text = histiry.sumSell;
+            label22.Text = histiry.sumProfit;
+        }
 
-
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox2.SelectedItem + "" != "")
+            {
+                upDateMoney(comboBox1.SelectedIndex + 1 + "", comboBox2.SelectedItem + "");
             }
         }
 
-        public int getPrintNumber()
+        private void upDateMoney(string v, string selectedItem)
         {
-            return (System.Convert.ToInt32(listView2.SelectedItems[0].SubItems[4].Text));
+            sellMountModel = new SellMountModel();
+            var client = new RestClient("https://script.google.com/macros/s/AKfycbyURj7T8d8gz6WdgHWy3l6XtLOVAN0CCc-EFufnAw/exec");
+            var request = new RestRequest(Method.POST);
+            /* request.AddHeader("Accept", "application/json");
+             request.AddParameter("action", "sell");
+             request.AddParameter("id", "P1001");
+             request.AddParameter("count", "2");*/
+
+            PostSellMount postSellMount = new PostSellMount();
+
+            postSellMount.action = "sellMount";
+            postSellMount.mount = v;
+            postSellMount.year = (Convert.ToInt32(selectedItem) + 543) + "";
+            string json = JsonConvert.SerializeObject(postSellMount);
+            // {
+            //   "Name": "Apple",
+            //   "Expiry": "2008-12-28T00:00:00",
+            //   "Sizes": [
+            //     "Small"
+            //   ]
+            // }
+            request.RequestFormat = DataFormat.Json;
+            request.AddBody(json);
+            var response = client.Execute<SellMountModel>(request);
+
+            //Response 200 OK
+            if (response.StatusCode.Equals(HttpStatusCode.OK))
+            {
+
+                //Do something with response.Content
+
+                sellMountModel = response.Data;
+                label19.Text = sellMountModel.sumMount;
+                label25.Text = sellMountModel.ProfitMount;
+                //  MessageBox.Show(response.Data.message);
+
+
+                // initListView2();
+                /*   product = response.Data;
+                   var searchForId = "P1001";
+                   int index = product.product.FindIndex(p => p.id == searchForId);
+                   string name = product.product[index].name;
+                   label17.Text = name;*/
+            }
+        }
+
+        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboBox1.SelectedItem + "" != "")
+            {
+                upDateMoney(comboBox1.SelectedIndex + 1 + "", comboBox2.SelectedItem + "");
+            }
         }
     }
 }

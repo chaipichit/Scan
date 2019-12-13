@@ -31,21 +31,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.listView1 = new System.Windows.Forms.ListView();
             this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.label17 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -55,18 +51,25 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.listView3 = new System.Windows.Forms.ListView();
+            this.monthCalendar1 = new System.Windows.Forms.MonthCalendar();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.tbSell3 = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.tbSell2 = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.button11 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.listView2 = new System.Windows.Forms.ListView();
             this.button9 = new System.Windows.Forms.Button();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.tbCount = new System.Windows.Forms.TextBox();
+            this.tbSell = new System.Windows.Forms.TextBox();
+            this.tbCost = new System.Windows.Forms.TextBox();
+            this.tbNameProduct = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -75,6 +78,21 @@
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.printDocument2 = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog2 = new System.Windows.Forms.PrintPreviewDialog();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -95,25 +113,20 @@
             this.tabControl1.Size = new System.Drawing.Size(1366, 768);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TabControl1_KeyDown);
-            this.tabControl1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TabControl1_KeyPress);
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.button8);
-            this.tabPage1.Controls.Add(this.button7);
+            this.tabPage1.Controls.Add(this.radioButton3);
+            this.tabPage1.Controls.Add(this.radioButton2);
+            this.tabPage1.Controls.Add(this.radioButton1);
             this.tabPage1.Controls.Add(this.listView1);
             this.tabPage1.Controls.Add(this.button6);
-            this.tabPage1.Controls.Add(this.button5);
-            this.tabPage1.Controls.Add(this.label17);
             this.tabPage1.Controls.Add(this.button4);
             this.tabPage1.Controls.Add(this.button3);
-            this.tabPage1.Controls.Add(this.label16);
-            this.tabPage1.Controls.Add(this.label15);
             this.tabPage1.Controls.Add(this.textBox5);
             this.tabPage1.Controls.Add(this.label14);
             this.tabPage1.Controls.Add(this.textBox4);
             this.tabPage1.Controls.Add(this.label13);
-            this.tabPage1.Controls.Add(this.button2);
             this.tabPage1.Controls.Add(this.label11);
             this.tabPage1.Controls.Add(this.label10);
             this.tabPage1.Controls.Add(this.label3);
@@ -130,25 +143,41 @@
             this.tabPage1.Text = "หน้าหลัก";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // button8
+            // radioButton3
             // 
-            this.button8.Location = new System.Drawing.Point(902, 492);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 38;
-            this.button8.Text = "sticker";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(1002, 66);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(66, 17);
+            this.radioButton3.TabIndex = 39;
+            this.radioButton3.TabStop = true;
+            this.radioButton3.Text = "ราคาสาม";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
-            // button7
+            // radioButton2
             // 
-            this.button7.Location = new System.Drawing.Point(1058, 466);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 37;
-            this.button7.Text = "button7";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Location = new System.Drawing.Point(1003, 42);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(59, 17);
+            this.radioButton2.TabIndex = 38;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "ราคาส่ง";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Location = new System.Drawing.Point(1002, 19);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(68, 17);
+            this.radioButton1.TabIndex = 37;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "ราคาปลีก";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // listView1
             // 
@@ -167,26 +196,6 @@
             this.button6.Text = "+";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.Button6_Click);
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(1027, 70);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 34;
-            this.button5.TabStop = false;
-            this.button5.Text = "Load";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.Button5_Click);
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(603, 23);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(41, 13);
-            this.label17.TabIndex = 33;
-            this.label17.Text = "label17";
             // 
             // button4
             // 
@@ -207,28 +216,6 @@
             this.button3.Text = "ตกลง";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.Button3_Click);
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.Black;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.ForeColor = System.Drawing.Color.Red;
-            this.label16.Location = new System.Drawing.Point(1155, 293);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(87, 33);
-            this.label16.TabIndex = 30;
-            this.label16.Text = "1,200";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(1061, 293);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(76, 25);
-            this.label15.TabIndex = 29;
-            this.label15.Text = "เงินทอน";
             // 
             // textBox5
             // 
@@ -269,15 +256,6 @@
             this.label13.Size = new System.Drawing.Size(95, 25);
             this.label13.TabIndex = 25;
             this.label13.Text = "จำนวนเงิน";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(1014, 6);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 24;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
             // 
             // label11
             // 
@@ -366,7 +344,23 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.textBox2);
+            this.tabPage2.Controls.Add(this.label24);
+            this.tabPage2.Controls.Add(this.label25);
+            this.tabPage2.Controls.Add(this.label23);
+            this.tabPage2.Controls.Add(this.label22);
+            this.tabPage2.Controls.Add(this.label21);
+            this.tabPage2.Controls.Add(this.label20);
+            this.tabPage2.Controls.Add(this.label19);
+            this.tabPage2.Controls.Add(this.label18);
+            this.tabPage2.Controls.Add(this.comboBox2);
+            this.tabPage2.Controls.Add(this.comboBox1);
+            this.tabPage2.Controls.Add(this.label17);
+            this.tabPage2.Controls.Add(this.label16);
+            this.tabPage2.Controls.Add(this.label15);
+            this.tabPage2.Controls.Add(this.label12);
+            this.tabPage2.Controls.Add(this.button5);
+            this.tabPage2.Controls.Add(this.listView3);
+            this.tabPage2.Controls.Add(this.monthCalendar1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -375,13 +369,31 @@
             this.tabPage2.Text = "ประวัติการขาย";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // textBox2
+            // button5
             // 
-            this.textBox2.Location = new System.Drawing.Point(322, 135);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 0;
-            this.textBox2.Text = "2";
+            this.button5.Location = new System.Drawing.Point(892, 239);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 3;
+            this.button5.Text = "LoadHistory";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // listView3
+            // 
+            this.listView3.Location = new System.Drawing.Point(47, 6);
+            this.listView3.Name = "listView3";
+            this.listView3.Size = new System.Drawing.Size(779, 383);
+            this.listView3.TabIndex = 2;
+            this.listView3.UseCompatibleStateImageBehavior = false;
+            // 
+            // monthCalendar1
+            // 
+            this.monthCalendar1.Location = new System.Drawing.Point(851, 26);
+            this.monthCalendar1.MaxSelectionCount = 1;
+            this.monthCalendar1.Name = "monthCalendar1";
+            this.monthCalendar1.TabIndex = 1;
+            this.monthCalendar1.DateChanged += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateChanged);
+            this.monthCalendar1.DateSelected += new System.Windows.Forms.DateRangeEventHandler(this.monthCalendar1_DateSelected);
             // 
             // tabPage3
             // 
@@ -404,14 +416,19 @@
             // 
             // tabPage4
             // 
+            this.tabPage4.Controls.Add(this.button2);
+            this.tabPage4.Controls.Add(this.tbSell3);
+            this.tabPage4.Controls.Add(this.label9);
+            this.tabPage4.Controls.Add(this.tbSell2);
+            this.tabPage4.Controls.Add(this.label8);
             this.tabPage4.Controls.Add(this.button11);
             this.tabPage4.Controls.Add(this.button10);
             this.tabPage4.Controls.Add(this.listView2);
             this.tabPage4.Controls.Add(this.button9);
-            this.tabPage4.Controls.Add(this.textBox9);
-            this.tabPage4.Controls.Add(this.textBox8);
-            this.tabPage4.Controls.Add(this.textBox7);
-            this.tabPage4.Controls.Add(this.textBox6);
+            this.tabPage4.Controls.Add(this.tbCount);
+            this.tabPage4.Controls.Add(this.tbSell);
+            this.tabPage4.Controls.Add(this.tbCost);
+            this.tabPage4.Controls.Add(this.tbNameProduct);
             this.tabPage4.Controls.Add(this.label7);
             this.tabPage4.Controls.Add(this.label6);
             this.tabPage4.Controls.Add(this.label5);
@@ -422,6 +439,50 @@
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "เพิ่มสินค้า";
             this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(1029, 135);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 16;
+            this.button2.Text = "print preview";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // tbSell3
+            // 
+            this.tbSell3.Location = new System.Drawing.Point(236, 268);
+            this.tbSell3.Name = "tbSell3";
+            this.tbSell3.Size = new System.Drawing.Size(212, 20);
+            this.tbSell3.TabIndex = 15;
+            this.tbSell3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbSell3_KeyPress);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(153, 268);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(47, 13);
+            this.label9.TabIndex = 14;
+            this.label9.Text = "ราคาสอง";
+            // 
+            // tbSell2
+            // 
+            this.tbSell2.Location = new System.Drawing.Point(236, 232);
+            this.tbSell2.Name = "tbSell2";
+            this.tbSell2.Size = new System.Drawing.Size(212, 20);
+            this.tbSell2.TabIndex = 13;
+            this.tbSell2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbSell2_KeyPress);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(153, 232);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(59, 13);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "ราคาขายส่ง";
             // 
             // button11
             // 
@@ -453,7 +514,7 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(272, 317);
+            this.button9.Location = new System.Drawing.Point(286, 369);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(75, 23);
             this.button9.TabIndex = 8;
@@ -461,38 +522,42 @@
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
-            // textBox9
+            // tbCount
             // 
-            this.textBox9.Location = new System.Drawing.Point(236, 230);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(212, 20);
-            this.textBox9.TabIndex = 7;
+            this.tbCount.Location = new System.Drawing.Point(236, 298);
+            this.tbCount.Name = "tbCount";
+            this.tbCount.Size = new System.Drawing.Size(212, 20);
+            this.tbCount.TabIndex = 7;
+            this.tbCount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCount_KeyPress);
             // 
-            // textBox8
+            // tbSell
             // 
-            this.textBox8.Location = new System.Drawing.Point(236, 194);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(212, 20);
-            this.textBox8.TabIndex = 6;
+            this.tbSell.Location = new System.Drawing.Point(236, 194);
+            this.tbSell.Name = "tbSell";
+            this.tbSell.Size = new System.Drawing.Size(212, 20);
+            this.tbSell.TabIndex = 6;
+            this.tbSell.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbSell_KeyPress);
             // 
-            // textBox7
+            // tbCost
             // 
-            this.textBox7.Location = new System.Drawing.Point(236, 162);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(212, 20);
-            this.textBox7.TabIndex = 5;
+            this.tbCost.Location = new System.Drawing.Point(236, 153);
+            this.tbCost.Name = "tbCost";
+            this.tbCost.Size = new System.Drawing.Size(212, 20);
+            this.tbCost.TabIndex = 5;
+            this.tbCost.TextChanged += new System.EventHandler(this.tbCost_TextChanged);
+            this.tbCost.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCost_KeyPress);
             // 
-            // textBox6
+            // tbNameProduct
             // 
-            this.textBox6.Location = new System.Drawing.Point(236, 104);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(212, 20);
-            this.textBox6.TabIndex = 4;
+            this.tbNameProduct.Location = new System.Drawing.Point(236, 104);
+            this.tbNameProduct.Name = "tbNameProduct";
+            this.tbNameProduct.Size = new System.Drawing.Size(212, 20);
+            this.tbNameProduct.TabIndex = 4;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(154, 230);
+            this.label7.Location = new System.Drawing.Point(154, 298);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(40, 13);
             this.label7.TabIndex = 3;
@@ -501,11 +566,11 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(154, 194);
+            this.label6.Location = new System.Drawing.Point(153, 194);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(48, 13);
+            this.label6.Size = new System.Drawing.Size(68, 13);
             this.label6.TabIndex = 2;
-            this.label6.Text = "ราคาขาย";
+            this.label6.Text = "ราคาขายปลีก";
             // 
             // label5
             // 
@@ -556,6 +621,150 @@
             this.printPreviewDialog2.Name = "printPreviewDialog2";
             this.printPreviewDialog2.Visible = false;
             // 
+            // printDialog1
+            // 
+            this.printDialog1.Document = this.printDocument2;
+            this.printDialog1.UseEXDialog = true;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(44, 422);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(67, 13);
+            this.label12.TabIndex = 4;
+            this.label12.Text = "ยอดรวมวันที่";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(140, 422);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(65, 13);
+            this.label15.TabIndex = 5;
+            this.label15.Text = "12/12/2563";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.Black;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label16.ForeColor = System.Drawing.Color.MediumSpringGreen;
+            this.label16.Location = new System.Drawing.Point(319, 422);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(24, 25);
+            this.label16.TabIndex = 6;
+            this.label16.Text = "0";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(44, 477);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(101, 13);
+            this.label17.TabIndex = 7;
+            this.label17.Text = "ยอดรวมประจำเดือน";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(162, 477);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 8;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(389, 479);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 21);
+            this.comboBox2.TabIndex = 9;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(321, 479);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(14, 13);
+            this.label18.TabIndex = 10;
+            this.label18.Text = "ปี";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.Color.Black;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label19.ForeColor = System.Drawing.Color.Lime;
+            this.label19.Location = new System.Drawing.Point(598, 469);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(29, 31);
+            this.label19.TabIndex = 11;
+            this.label19.Text = "0";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(310, 397);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(45, 13);
+            this.label20.TabIndex = 12;
+            this.label20.Text = "ยอดขาย";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(442, 397);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(31, 13);
+            this.label21.TabIndex = 13;
+            this.label21.Text = "กำไร";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.BackColor = System.Drawing.Color.Black;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label22.ForeColor = System.Drawing.Color.MediumSpringGreen;
+            this.label22.Location = new System.Drawing.Point(449, 422);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(24, 25);
+            this.label22.TabIndex = 14;
+            this.label22.Text = "0";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(591, 446);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(45, 13);
+            this.label23.TabIndex = 15;
+            this.label23.Text = "ยอดขาย";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(719, 446);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(31, 13);
+            this.label24.TabIndex = 17;
+            this.label24.Text = "กำไร";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.BackColor = System.Drawing.Color.Black;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label25.ForeColor = System.Drawing.Color.Lime;
+            this.label25.Location = new System.Drawing.Point(721, 467);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(29, 31);
+            this.label25.TabIndex = 16;
+            this.label25.Text = "0";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -587,7 +796,6 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
@@ -597,23 +805,16 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button7;
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
-        private System.Windows.Forms.Button button8;
         private System.Drawing.Printing.PrintDocument printDocument2;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog2;
         private System.Windows.Forms.TabPage tabPage4;
@@ -625,10 +826,36 @@
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.ListView listView2;
         private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox tbCount;
+        private System.Windows.Forms.TextBox tbSell;
+        private System.Windows.Forms.TextBox tbCost;
+        private System.Windows.Forms.TextBox tbNameProduct;
+        private System.Windows.Forms.PrintDialog printDialog1;
+        private System.Windows.Forms.TextBox tbSell3;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox tbSell2;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.MonthCalendar monthCalendar1;
+        private System.Windows.Forms.ListView listView3;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
     }
 }
 

@@ -12,7 +12,9 @@ namespace DesktopApp1
         public string action { get; set; }
         public string[] name { get; set; }
 
-        public string[] price { get; set; }
+        public string[] sell { get; set; }
+        public string[] sell2 { get; set; }
+        public string[] sell3 { get; set; }
 
         public string[] cost { get; set; }
         public string[] date { get; set; }
