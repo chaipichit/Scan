@@ -13,6 +13,7 @@ namespace DesktopApp1
     public partial class Form3 : Form
     {
         int printNumber = 0;
+        public string print = "";
         public Form3()
         {
             InitializeComponent();
@@ -32,7 +33,7 @@ namespace DesktopApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            print = textBox1.Text;
             DialogResult = DialogResult.OK;
             Close();
         }

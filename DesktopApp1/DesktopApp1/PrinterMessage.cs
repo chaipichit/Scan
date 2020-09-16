@@ -6,14 +6,10 @@ using System.Threading.Tasks;
 
 namespace DesktopApp1
 {
-    
-
-    public class SellMountModel
+    public class PrinterMessage
     {
         public string message { get; set; }
-        public string sumMount { get; set; }
-        public List<History> history { get; set; }
-        public string ProfitMount { get; set; }
 
+    
     }
 }

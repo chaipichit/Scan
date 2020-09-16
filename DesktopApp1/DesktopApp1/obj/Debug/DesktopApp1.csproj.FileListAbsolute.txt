@@ -41,3 +41,10 @@ C:\Scan\DesktopApp1\DesktopApp1\bin\Debug\zxing.presentation.xml
 C:\Scan\DesktopApp1\DesktopApp1\bin\Debug\IronBarCode.dll
 C:\Scan\DesktopApp1\DesktopApp1\bin\Debug\IronBarCode.xml
 C:\Scan\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.Form3.resources
+C:\Scan\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.EditFrom.resources
+C:\Scan\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.WaitFrom.resources
+C:\Scan\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.AddItemFrom.resources
+C:\Scan\DesktopApp1\DesktopApp1\bin\Debug\DesktopApp1.exe.manifest
+C:\Scan\DesktopApp1\DesktopApp1\bin\Debug\DesktopApp1.application
+C:\Scan\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.exe.manifest
+C:\Scan\DesktopApp1\DesktopApp1\obj\Debug\DesktopApp1.application
