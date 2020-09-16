@@ -62,6 +62,7 @@ namespace DesktopApp1
             radioButton1.Checked = true;
             radioButton4.Checked = true;
             textBox5.Text = "0";
+            textBox4.Text = "0";
             dayStart = DateTime.Today.Day + "";
             mountStart = DateTime.Today.Month + "";
             yearStart = DateTime.Today.Year + "";
@@ -414,7 +415,6 @@ namespace DesktopApp1
             listView1.SelectedItems[0].SubItems[4].Text = (System.Convert.ToInt32(listView1.SelectedItems[0].SubItems[4].Text) + 1) + "";
             listView1.SelectedItems[0].SubItems[5].Text = (System.Convert.ToInt32(listView1.SelectedItems[0].SubItems[4].Text)) * (System.Convert.ToInt32(listView1.SelectedItems[0].SubItems[3].Text)) + "";
             //listView1.SelectedItems[0].SubItems[5].Text = (count1 * count)+"";
-
             // listBox1.Items.Insert(listBox1.SelectedIndex, couds[0] + "\t" + couds[1] + "\t" + couds[2] + "\t" + couds[3] + " \t" + " x \t" + count + "\t" + (count1* count));
 
             //  price1 += (count1 * count);
@@ -434,24 +434,30 @@ namespace DesktopApp1
 
         private void sellItem()
         {
-            printDocument1.PrinterSettings.PrinterName = "Slip";
+            printDocument1.PrinterSettings.PrinterName = "XP-58";
             size = 1;
             price1 = 0;
             //  MessageBox.Show("เงินทอน  " +( System.Convert.ToInt32(textBox4.Text)- System.Convert.ToInt32(label11.Text)) );
-
-            change = (System.Convert.ToInt32(textBox4.Text) - System.Convert.ToInt32(label11.Text) + System.Convert.ToInt32(textBox5.Text)) + "";
-            testDialog.setLabel("เงินทอน  " + change);
-            testDialog.ShowDialog(this);
-            if (testDialog.DialogResult == DialogResult.OK)
+            if (textBox4.Text == "0") 
             {
-                printPreviewDialog1.PrintPreviewControl.Zoom = 150 / 100f;
-                if (printPreviewDialog1.ShowDialog() == DialogResult.OK)
+                MessageBox.Show("กรุณาใส่จำนวนเงิน");
+            } else
+            {
+                change = (System.Convert.ToInt32(textBox4.Text) - System.Convert.ToInt32(label11.Text) + System.Convert.ToInt32(textBox5.Text)) + "";
+                testDialog.setLabel("เงินทอน  " + change);
+                testDialog.ShowDialog(this);
+                if (testDialog.DialogResult == DialogResult.OK)
                 {
-                    printDocument1.Print();
+                    printPreviewDialog1.PrintPreviewControl.Zoom = 150 / 100f;
+                    if (printPreviewDialog1.ShowDialog() == DialogResult.OK)
+                    {
+                        printDocument1.Print();
 
+                    }
                 }
+                SellApi();
             }
-            SellApi();
+           
         }
 
         private void printDocument1_PrintPage_1(object sender, System.Drawing.Printing.PrintPageEventArgs e)
@@ -919,7 +925,7 @@ namespace DesktopApp1
                     int price = System.Convert.ToInt32(product.product[index].sell);
                     listView1.Items[i].SubItems[3].Text = price + "";
                     listView1.Items[i].SubItems[5].Text = (price * System.Convert.ToInt32(listView1.Items[i].SubItems[4].Text)) + "";
-                    sum += (price * System.Convert.ToInt32(listView1.Items[0].SubItems[4].Text));
+                    sum += (price * System.Convert.ToInt32(listView1.Items[i].SubItems[4].Text));
 
                 }
 
@@ -932,7 +938,7 @@ namespace DesktopApp1
                     int price = System.Convert.ToInt32(product.product[index].sell2);
                     listView1.Items[i].SubItems[3].Text = price + "";
                     listView1.Items[i].SubItems[5].Text = (price * System.Convert.ToInt32(listView1.Items[i].SubItems[4].Text)) + "";
-                    sum += (price * System.Convert.ToInt32(listView1.Items[0].SubItems[4].Text));
+                    sum += (price * System.Convert.ToInt32(listView1.Items[i].SubItems[4].Text));
 
                 }
 
@@ -945,7 +951,7 @@ namespace DesktopApp1
                     int price = System.Convert.ToInt32(product.product[index].sell3);
                     listView1.Items[i].SubItems[3].Text = price + "";
                     listView1.Items[i].SubItems[5].Text = (price * System.Convert.ToInt32(listView1.Items[i].SubItems[4].Text)) + "";
-                    sum += (price * System.Convert.ToInt32(listView1.Items[0].SubItems[4].Text));
+                    sum += (price * System.Convert.ToInt32(listView1.Items[i].SubItems[4].Text));
 
                 }
             }
@@ -1334,7 +1340,7 @@ namespace DesktopApp1
 
                     }
                     int result = System.Convert.ToInt32(price);
-                    price1 += result;
+                   // price1 += result;
                     string[] arr = new string[7];
                     arr[0] = size + ""; //รายการ
                     arr[1] = searchForId;//รหัสสินค้า
@@ -1359,7 +1365,9 @@ namespace DesktopApp1
 
                     }
 
-                    label11.Text = price1 + "";
+                    //   label11.Text = price1 + "";
+                    calculateNew();
+
                     textBox1.Text = "";
                 }
 
@@ -1529,6 +1537,7 @@ namespace DesktopApp1
                 {
                     listView1.SelectedItems[0].SubItems[4].Text = itemFrom.count;
                     listView1.SelectedItems[0].SubItems[5].Text = System.Convert.ToInt32(listView1.SelectedItems[0].SubItems[3].Text) * System.Convert.ToInt32(listView1.SelectedItems[0].SubItems[4].Text) + "";
+                    calculateNew();
 
                 }
                 else
@@ -1565,6 +1574,11 @@ namespace DesktopApp1
                 sellItem();
 
             }
+        }
+
+        private void label13_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
